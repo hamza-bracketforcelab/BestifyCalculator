@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-accent: #6366f1;
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-card: var(--brand-card);
+  --color-brand-border: var(--brand-border);
+  --color-brand-text-soft: var(--brand-text-soft);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-orbit: orbit 20s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+}
+
+:root {
+  --brand-primary: #0f172a;
+  --brand-bg: #f8fafc;
+  --brand-card: rgba(255, 255, 255, 0.8);
+  --brand-border: rgba(226, 232, 240, 0.8);
+  --brand-text-soft: #64748b;
+}
+
+.dark {
+  --brand-primary: #f1f5f9;
+  --brand-bg: #020617;
+  --brand-card: rgba(15, 23, 42, 0.7);
+  --brand-border: rgba(30, 41, 59, 0.5);
+  --brand-text-soft: #94a3b8;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-primary font-sans transition-colors duration-500 overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight transition-colors duration-300;
+  }
+}
+
+.glass {
+  @apply backdrop-blur-xl border border-brand-border shadow-2xl transition-all duration-300;
+}
+
+.animate-glow {
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+}
