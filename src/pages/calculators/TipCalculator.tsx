@@ -3,6 +3,9 @@ import { History, Users, DollarSign, Split } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 
+import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
+
 export default function TipCalculator() {
   const [bill, setBill] = React.useState('50');
   const [tipPercent, setTipPercent] = React.useState('15');
@@ -133,6 +136,45 @@ export default function TipCalculator() {
            </div>
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">TIPPING ETIQUETTE & BILL SPLITTING GUIDE</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Sharing a meal is one of life's greatest pleasures, but calculating the <span className="font-bold text-brand-primary">Bill Split</span> shouldn't be a chore. 
+            Our <span className="font-bold text-brand-primary text-brand-accent">TIP CALCULATOR</span> is designed for instant accuracy, ensuring everyone pays their fair share. 
+            In 2026, trending dining trends emphasize "Social Tipping" and transparent gratuity across global hospitality sectors.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Global Tipping Standards</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Did you know that <span className="font-bold">Gratuity Percentages</span> vary significantly by country? Trending travel data shows that while 
+               15-20% is standard in the US, many European countries include service in the bill. Our <span className="font-bold text-brand-accent">Split Tool</span> 
+               allows you to adjust percentages to match the local custom instantly.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">How to Split Fairly</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Modern diners are moving away from "evenly split" to "itemized billing." While our tool handles <span className="text-brand-accent font-bold">TOTAL SPLITTING</span>, 
+               knowing your <span className="font-bold">total per person</span> including tax and tip is the first step in transparent group finances. 
+               No more awkward math at the table—Bestify does it for you.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: tip calculator, split bill with friends, restaurant gratuity tool, holiday tipping guide 2026, service charge calculator.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="tip" />
     </div>
   );
 }

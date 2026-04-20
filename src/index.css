@@ -45,16 +45,16 @@
 
 @layer base {
   body {
-    @apply bg-brand-bg text-brand-primary font-sans transition-colors duration-500 overflow-x-hidden;
+    @apply bg-brand-bg text-brand-primary font-sans transition-colors duration-200 overflow-x-hidden;
   }
   
   h1, h2, h3, h4 {
-    @apply font-display tracking-tight transition-colors duration-300;
+    @apply font-display tracking-tight transition-colors duration-200;
   }
 }
 
 .glass {
-  @apply backdrop-blur-xl border border-brand-border shadow-2xl transition-all duration-300;
+  @apply backdrop-blur-xl border border-brand-border shadow-2xl transition-all duration-200;
 }
 
 .animate-glow {

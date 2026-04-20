@@ -3,6 +3,7 @@ import { Flame, Info, Utensils, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 const ACTIVITY_MULTIPLIERS = {
   sedentary: { label: 'Sedentary', value: 1.2, desc: 'Little or no exercise' },
@@ -181,6 +182,45 @@ export default function CaloriesCalculator() {
           )}
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">TDEE, BMR & WEIGHT MANAGEMENT DATA</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Your <span className="font-bold text-brand-primary">Daily Calorie Intake</span> is the foundation of any fitness transformation. Our <span className="font-bold text-brand-primary text-brand-accent">CALORIES CALCULATOR</span> 
+            uses the clinically-backed <span className="font-bold">Mifflin-St Jeor Equation</span> to estimate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE). 
+            In 2026, trending nutritional science highlights that calories are not just numbers; they are fuel for your biological engine.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">BMR vs TDEE Comparison</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Trending weight loss topics often confuse <span className="font-bold">"BMR"</span> with <span className="font-bold">"Maintenance Calories."</span> 
+               By using our <span className="font-bold text-brand-accent">TDEE TOOL</span>, you can see how your lifestyle—from sedentary to extra active—affects 
+               your metabolic burn. This is the first step in creating a sustainable <span className="font-bold">calorie deficit</span> or surplus.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Fat Loss & Muscle Gain Indices</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Looking for trending <span className="text-brand-accent font-bold">CALORIE SURPLUS</span> strategies? Our tool provides specific targets 
+               for muscle growth and fat oxidation. Precision in <span className="font-bold">macro planning</span> starts with knowing your maintenance floor, 
+               and Bestify delivers that data instantly without the need for complex manual math.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: calories calculator, TDEE calculator, BMR estimator, weight loss plan, muscle gain calories, fitness tracker 2026.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="calories" />
     </div>
   );
 }

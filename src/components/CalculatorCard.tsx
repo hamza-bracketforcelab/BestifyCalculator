@@ -9,10 +9,10 @@ export default function CalculatorCard({ calc, index }: { calc: CalculatorInfo; 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-      transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
+      whileHover={{ y: -6, transition: { duration: 0.15 } }}
+      transition={{ delay: index * 0.03, type: "spring", stiffness: 150, damping: 20 }}
     >
       <Link
         to={calc.path}

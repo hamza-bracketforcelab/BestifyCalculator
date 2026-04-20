@@ -2,21 +2,26 @@ import React from 'react';
 import { Coins, RefreshCcw, TrendingUp, ArrowRightLeft, Loader2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
+import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 const COMMON_CURRENCIES = [
   { code: 'USD', name: 'US Dollar', flag: '🇺🇸' },
   { code: 'EUR', name: 'Euro', flag: '🇪🇺' },
   { code: 'GBP', name: 'British Pound', flag: '🇬🇧' },
-  { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵' },
+  { code: 'PKR', name: 'Pakistani Rupee', flag: '🇵🇰' },
   { code: 'INR', name: 'Indian Rupee', flag: '🇮🇳' },
+  { code: 'AED', name: 'UAE Dirham', flag: '🇦🇪' },
+  { code: 'SAR', name: 'Saudi Riyal', flag: '🇸🇦' },
+  { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵' },
   { code: 'CAD', name: 'Canadian Dollar', flag: '🇨🇦' },
   { code: 'AUD', name: 'Australian Dollar', flag: '🇦🇺' },
 ];
 
 export default function CurrencyConverter() {
-  const [amount, setAmount] = React.useState('100');
+  const [amount, setAmount] = React.useState('1');
   const [from, setFrom] = React.useState('USD');
-  const [to, setTo] = React.useState('EUR');
+  const [to, setTo] = React.useState('PKR');
   const [rate, setRate] = React.useState<number | null>(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -30,15 +35,35 @@ export default function CurrencyConverter() {
     setLoading(true);
     setError(null);
     try {
-      // Using Frankfurter API (Free, no key required)
-      const response = await window.fetch(`https://api.frankfurter.app/latest?amount=1&from=${from}&to=${to}`);
-      if (!response.ok) throw new Error('Failed to fetch exchange rates.');
+      // Primary: ExchangeRate-API (Better support for PKR, INR, AED)
+      const response = await window.fetch(`https://open.er-api.com/v6/latest/${from}`);
+      if (!response.ok) throw new Error('Primary API failed');
       const data = await response.json();
-      setRate(data.rates[to]);
-      setLastUpdated(new Date().toLocaleTimeString());
+      
+      if (data.result === 'success') {
+        const newRate = data.rates[to];
+        if (newRate) {
+          setRate(newRate);
+          setLastUpdated(new Date().toLocaleTimeString());
+        } else {
+          throw new Error('Currency not supported');
+        }
+      } else {
+        throw new Error('API Error');
+      }
     } catch (err) {
-      setError('Error fetching real-time rates. Using fallback.');
-      setRate(1); // Fallback
+      console.warn('Primary fetch failed, trying fallback...', err);
+      try {
+        // Fallback: Frankfurter
+        const response = await window.fetch(`https://api.frankfurter.app/latest?amount=1&from=${from}&to=${to}`);
+        if (!response.ok) throw new Error('Fallback API failed');
+        const data = await response.json();
+        setRate(data.rates[to]);
+        setLastUpdated(new Date().toLocaleTimeString());
+      } catch (fallbackErr) {
+        setError('Real-time rates unavailable. Please check your connection.');
+        setRate(1); 
+      }
     } finally {
       setLoading(false);
     }
@@ -181,6 +206,45 @@ export default function CurrencyConverter() {
             </li>
          </ul>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">REAL-TIME FOREX RATES & GLOBAL CURRENCY DATA</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            In the fast-moving world of global finance, <span className="font-bold text-brand-primary">Live Exchange Rates</span> are essential for travelers and digital nomads. Our <span className="font-bold text-brand-primary text-brand-accent">CURRENCY CONVERTER</span> 
+            provides up-to-the-minute data for all major global pairs. In 2026, trending currency markets like USD/PKR, EUR/USD, and GBP/INR are under 
+            constant fluctuation, making a reliable <span className="font-bold">Real-time Converter</span> indispensable.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Why Forex Volatility Matters</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Most people search for <span className="font-bold">"currency conversion"</span> before booking flights or sending money abroad. 
+               Trending financial news highlights that even small shifts in <span className="font-bold text-brand-accent">INTERBANK RATES</span> 
+               can affect your purchasing power. Bestify uses a multi-source API to ensure you get the most accurate, current numbers.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Market Trends & Digital Nomads</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               With the rise of remote work, <span className="text-brand-accent font-bold">MONEY TRANSFERS</span> are trending at all-time highs. 
+               Whether you are looking for <span className="font-bold">USD prices</span> or checking <span className="font-bold">SAR/AED rates</span> 
+               for travel, our tool simplifies the complex world of foreign exchange with a single click.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: currency converter, live exchange rates, forex tool, money converter online, USD to PKR live, EUR to USD 2026.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="currency" />
     </div>
   );
 }

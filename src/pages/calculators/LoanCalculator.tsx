@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 export default function LoanCalculator() {
   const [amount, setAmount] = React.useState('250000');
@@ -43,6 +44,32 @@ export default function LoanCalculator() {
         <meta name="description" content="Calculate your monthly loan payments, total interest, and principal breakdown. Perfect for personal loans, auto loans, and general financing." />
         <meta name="keywords" content="loan calculator, monthly payment, interest calculator, loan payoff, personal loan calc" />
         <link rel="canonical" href="https://bestifycalculator.com/loan" />
+
+        {/* FAQ Structured Data for SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How is monthly loan payment calculated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The monthly payment is calculated using the amortization formula: P * [r(1+r)^n] / [(1+r)^n – 1], where P is principal, r is monthly interest rate, and n is number of months."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does this calculator include taxes and insurance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "This general loan calculator focus on principal and interest. For taxes and insurance, please use our Mortgage Calculator."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">
@@ -190,8 +217,27 @@ export default function LoanCalculator() {
                </div>
             </div>
           </div>
+
+          <section className="bg-brand-card/50 backdrop-blur-sm p-8 rounded-[40px] border border-brand-border space-y-6">
+            <h2 className="text-2xl font-bold text-brand-primary uppercase tracking-tight">Loan Guide & FAQ</h2>
+            <div className="grid gap-6">
+              <div className="space-y-2">
+                <h3 className="font-bold text-brand-primary">How do interest rates affect my loan?</h3>
+                <p className="text-sm text-brand-text-soft leading-relaxed">
+                  Higher interest rates significantly increase the total cost of your loan over time. Even a 0.5% difference can save you thousands of dollars in total interest payments.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold text-brand-primary">What is Principal vs Interest?</h3>
+                <p className="text-sm text-brand-text-soft leading-relaxed">
+                  The Principal is the actual amount you borrowed. Interest is the fee charged by the lender for using their money. Our calculator helps you see the exact breakdown of both.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
+      <RelatedCalculators currentId="financial" />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Banknote, Clock, Calendar, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 export default function SalaryCalculator() {
   const [calculationMode, setCalculationMode] = React.useState<'hourly' | 'monthly'>('hourly');
@@ -182,6 +183,45 @@ export default function SalaryCalculator() {
           </div>
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">ANNUAL SALARY & HOURLY RATE GUIDE</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Understanding your <span className="font-bold text-brand-primary">Salary Breakdown</span> is crucial for financial stability. Whether you are transitioning from 
+            an <span className="font-bold text-brand-primary text-brand-accent">HOURLY WAGE</span> to a full-time contract or negotiating a job offer, knowing your net and gross income 
+            helps in defining your lifestyle.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Why use a Salary Calculator?</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Most job offers discuss annual totals, but bills are paid monthly and hours are worked weekly. Our <span className="font-bold">Income Converter</span> bridges that gap. 
+               By calculating your <span className="text-brand-accent font-bold">HOURLY TO SALARY</span> ratio, you can determine if a job offers competitive pay 
+               compared to the market average and trending salary benchmarks.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Gross vs Net Pay</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               The values shown here reflect <span className="font-bold">GROSS SALARY</span>. Trending financial topics often emphasize the importance of 
+               calculating taxes (FICA, Federal, and State) to find your take-home pay. Always remember that your "Total Compensation" 
+               might include bonuses and benefits not captured in a base rate.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: salary converter, hourly to annual pay, wage calculation, 2026 salary trends, income planner, budget estimator.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="salary" />
     </div>
   );
 }

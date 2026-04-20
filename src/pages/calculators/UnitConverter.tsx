@@ -3,6 +3,7 @@ import { Ruler, ArrowLeftRight, RefreshCcw } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 const UNIT_CATEGORIES = {
   Length: {
@@ -215,6 +216,45 @@ export default function UnitConverter() {
           </div>
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">GLOBAL UNIT CONVERSION & METRIC SYSTEM</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Whether you are a student, engineer, or traveler, <span className="font-bold text-brand-primary">Unit Conversion</span> is a daily necessity. Our <span className="font-bold text-brand-primary text-brand-accent">MEASUREMENT CONVERTER</span> 
+            supports thousands of combinations, including <span className="font-bold">Length, Mass, and Volume</span>. In 2026, trending industrial data emphasizes the need for high-precision 
+            conversions between Imperial and Metric systems to avoid costly engineering errors.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Distance & Length Precision</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Common trending searches like <span className="font-bold">"CM to Inch"</span> or <span className="font-bold">"KM to Miles"</span> are handled instantly by our engine. 
+               We provide conversion results up to 6 decimal places, making it suitable for both casual kitchen math and professional 
+               architectural <span className="font-bold">unit scaling</span>.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Mass & Volume Standards</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Moving items globally? Our <span className="text-brand-accent font-bold">KG TO LBS</span> converter is essential for shipping and logistics. 
+               Additionally, our volume tool allows for rapid switching between Liters and Gallons, which is trending among 
+               international travelers and culinary enthusiasts looking for <span className="font-bold">accurate unit transforms</span>.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: unit converter online, metric to imperial, math conversion, cm to inches, weight converter kg to lbs.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="unit-converter" />
     </div>
   );
 }

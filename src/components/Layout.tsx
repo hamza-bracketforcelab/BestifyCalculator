@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isHome = location.pathname === '/';
 
   return (
-    <div className="min-h-screen bg-brand-bg text-brand-primary flex flex-col transition-colors duration-500 relative overflow-hidden">
+    <div className="min-h-screen bg-brand-bg text-brand-primary flex flex-col transition-colors duration-200 relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <motion.div 
@@ -93,7 +93,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="flex items-center gap-2 px-5 py-2.5 bg-brand-bg/50 backdrop-blur-sm border border-brand-border rounded-2xl text-sm font-bold hover:border-brand-accent transition-all text-brand-primary"
               >
                 {currentCalc ? currentCalc.name : 'Select Calculator'}
-                <ChevronDown size={14} className={cn("transition-transform duration-300", isSwitcherOpen && "rotate-180")} />
+                <ChevronDown size={14} className={cn("transition-transform duration-200", isSwitcherOpen && "rotate-180")} />
               </button>
 
               <AnimatePresence>
@@ -261,19 +261,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </p>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Categories</h4>
+              <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Top Instruments</h4>
               <ul className="mt-4 space-y-2">
-                <li><Link to="/health" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Health & Fitness</Link></li>
-                <li><Link to="/finance" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Financial Planning</Link></li>
-                <li><Link to="/units" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Unit Conversion</Link></li>
+                <li><Link to="/bmi" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">BMI Calculator</Link></li>
+                <li><Link to="/loan" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Loan Calculator</Link></li>
+                <li><Link to="/currency" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Currency Converter</Link></li>
+                <li><Link to="/salary" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Salary Calculator</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Legal</h4>
+              <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Health Indices</h4>
               <ul className="mt-4 space-y-2">
-                <li><a href="#" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Terms of Use</a></li>
-                <li><a href="#" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Disclaimer</a></li>
+                <li><Link to="/age" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Age Calculator Tool</Link></li>
+                <li><Link to="/calories" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Calories Estimator</Link></li>
+                <li><Link to="/fat" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Body Fat Index</Link></li>
               </ul>
             </div>
           </div>

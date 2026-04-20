@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 export default function MortgageCalculator() {
   const [price, setPrice] = React.useState('350000');
@@ -205,6 +206,45 @@ export default function MortgageCalculator() {
           )}
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">MORTGAGE PLANNING & REAL ESTATE TRENDS</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Securing a <span className="font-bold text-brand-primary">Home Loan</span> is one of the most critical financial decisions in 2026. Our <span className="font-bold text-brand-primary text-brand-accent">MORTGAGE CALCULATOR</span> 
+            goes beyond just principal and interest, allowing you to factor in <span className="font-bold">Property Taxes</span> and <span className="font-bold">Homeowners Insurance</span> (PITI). 
+            In a volatile housing market, understanding your debt-to-income ratio is the key to sustainable homeownership.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Understanding Amortization</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Trending mortgage discussions often focus on "how to shorten the loan term." By using our <span className="font-bold">Mortgage Tool</span>, 
+               you can see how a 15-year vs 30-year term affects your long-term wealth. Small changes in interest rates can lead 
+               to massive savings over the life of the <span className="font-bold">real estate loan</span>.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Escrow & Hidden Costs</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Most buyers only consider the monthly principal, but <span className="text-brand-accent font-bold">ESCROW FEES</span>, 
+               maintenance, and insurance can add 20-30% to your monthly obligation. Bestify's <span className="font-bold">housing payment calculator</span> 
+               is designed to provide a realistic view of your total monthly expenditures.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: mortgage calculator 2026, home loan payment, PITI calculator, real estate investment, property tax estimator.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="mortgage" />
     </div>
   );
 }

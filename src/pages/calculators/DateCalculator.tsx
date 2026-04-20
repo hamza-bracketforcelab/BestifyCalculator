@@ -3,6 +3,7 @@ import { Calendar, Info, Clock, ArrowRight } from 'lucide-react';
 import { differenceInDays, differenceInMonths, differenceInWeeks, format, addDays, parseISO } from 'date-fns';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 export default function DateCalculator() {
   const [startDate, setStartDate] = React.useState(format(new Date(), 'yyyy-MM-dd'));
@@ -115,6 +116,46 @@ export default function DateCalculator() {
           )}
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">DATE COUNTDOWN & INTERVAL PLANNING</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Time is our most valuable asset. Our <span className="font-bold text-brand-primary">Days Between Dates Calculator</span> is the ultimate tool for project managers, 
+            event planners, and anyone tracking life's big moments. Whether you need an <span className="font-bold text-brand-primary text-brand-accent">INTERAL CALCULATOR</span> for 
+            business days or a simple countdown to a vacation, Bestify provides the exact duration in days, weeks, and months.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Project Management & Deadlines</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Trending office productivity hacks often involve precise <span className="font-bold whitespace-nowrap">Schedule Tracking</span>. 
+               By calculating the <span className="font-bold">Total Days</span> between two calendar points, you can better manage project sprints 
+               and avoid missing critical 2026 deadlines. Our tool accounts for leap years and varies based on your chosen <span className="font-bold text-brand-accent">Target Date</span>.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Personal Milestones</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               "How many months until my anniversary?" is a trending search that we answer instantly. 
+               Use our <span className="text-brand-accent font-bold">INTERVAL COUNTER</span> to plan surprises or track health goals. 
+               Understanding the <span className="font-bold">exact time difference</span> between any two dates helps in better life 
+               organization and time management.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: date calculator, count days between dates, time interval tool, project schedule planner, 2026 calendar countdown.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="date-diff" />
     </div>
   );
 }

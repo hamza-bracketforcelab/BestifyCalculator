@@ -3,6 +3,7 @@ import { TrendingUp, Info, Ruler, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
+import RelatedCalculators from '@/src/components/RelatedCalculators';
 
 export default function BodyFatCalculator() {
   const [gender, setGender] = React.useState<'male' | 'female'>('male');
@@ -195,6 +196,46 @@ export default function BodyFatCalculator() {
           )}
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <section className="bg-brand-card/50 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-brand-border space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">BODY COMPOSITION & NAVY METHOD GUIDE</h2>
+          <p className="text-brand-text-soft leading-relaxed">
+            Understanding your <span className="font-bold text-brand-primary">Body Fat Percentage</span> is far more revealing than just looking at the scale. Our <span className="font-bold text-brand-primary text-brand-accent">BODY FAT CALCULATOR</span> 
+            utilizes the trusted <span className="font-bold">U.S. Navy Circumference Method</span> to estimate your lean mass vs adipose tissue. 
+            In 2026, trending fitness culture is shifting away from weight and focusing on "Body Recomposition" and metabolic health markers.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">Essential Fat vs Stored Fat</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               Most people aim for "Six Pack ABS," but <span className="font-bold">Essential Body Fat</span> is necessary for hormone regulation and brain function. 
+               By using our <span className="font-bold text-brand-accent">Measurement Tool</span>, you can determine if you fall into the Athlete, 
+               Fitness, or Average category. Trending health data shows that optimal ranges vary strictly by gender and age.
+             </p>
+          </div>
+          <div className="space-y-4">
+             <h3 className="text-xl font-bold text-brand-primary">How to Measure Accurately</h3>
+             <p className="text-sm text-brand-text-soft leading-relaxed">
+               For the best results, use a <span className="text-brand-accent font-bold">FELEXIBLE TAPE MEASURE</span>. 
+               Trending searches for "how to lower body fat" always start with establishing a baseline. 
+               Whether you use metric or imperial, consistency in measurement location (Neck, Waist, and Hips) 
+               is key to tracking your progress on Bestify's <span className="font-bold">composition tracker</span>.
+             </p>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-brand-border">
+          <p className="text-xs text-brand-text-soft italic text-center">
+            Keywords: body fat calculator, navy method body fat, how to measure body fat, athlete body fat percentage, 2026 fitness trends.
+          </p>
+        </div>
+      </section>
+
+      <RelatedCalculators currentId="body-fat" />
     </div>
   );
 }
