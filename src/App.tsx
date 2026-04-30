@@ -16,6 +16,8 @@ const CurrencyConverter = lazy(() => import('@/src/pages/calculators/CurrencyCon
 const CaloriesCalculator = lazy(() => import('@/src/pages/calculators/CaloriesCalculator'));
 const BodyFatCalculator = lazy(() => import('@/src/pages/calculators/BodyFatCalculator'));
 const MortgageCalculator = lazy(() => import('@/src/pages/calculators/MortgageCalculator'));
+const WattsToVolts = lazy(() => import('@/src/pages/calculators/WattsToVolts'));
+const VoltsToWatts = lazy(() => import('@/src/pages/calculators/VoltsToWatts'));
 
 // Placeholder
 const Placeholder = ({ title }: { title: string }) => (
@@ -42,17 +44,19 @@ export default function App() {
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/age" element={<AgeCalculator />} />
-            <Route path="/units" element={<UnitConverter />} />
-            <Route path="/bmi" element={<BMICalculator />} />
-            <Route path="/salary" element={<SalaryCalculator />} />
-            <Route path="/date" element={<DateCalculator />} />
-            <Route path="/loan" element={<LoanCalculator />} />
-            <Route path="/tip" element={<TipCalculator />} />
-            <Route path="/currency" element={<CurrencyConverter />} />
-            <Route path="/calories" element={<CaloriesCalculator />} />
-            <Route path="/fat" element={<BodyFatCalculator />} />
-            <Route path="/mortgage" element={<MortgageCalculator />} />
+            <Route path="/age-calculator" element={<AgeCalculator />} />
+            <Route path="/unit-converter-calculator" element={<UnitConverter />} />
+            <Route path="/bmi-calculator" element={<BMICalculator />} />
+            <Route path="/salary-calculator" element={<SalaryCalculator />} />
+            <Route path="/date-calculator" element={<DateCalculator />} />
+            <Route path="/loan-calculator" element={<LoanCalculator />} />
+            <Route path="/tip-calculator" element={<TipCalculator />} />
+            <Route path="/currency-converter-calculator" element={<CurrencyConverter />} />
+            <Route path="/calories-calculator" element={<CaloriesCalculator />} />
+            <Route path="/body-fat-calculator" element={<BodyFatCalculator />} />
+            <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
+            <Route path="/watts-to-volts-calculator" element={<WattsToVolts />} />
+            <Route path="/volts-to-watts-calculator" element={<VoltsToWatts />} />
           </Routes>
         </Suspense>
       </Layout>

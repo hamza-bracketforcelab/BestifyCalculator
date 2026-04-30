@@ -35,7 +35,7 @@ export default function DateCalculator() {
         <title>Date Calculator | Days Between Dates Counter | BestifyCalculator</title>
         <meta name="description" content="Calculate the exact number of days, weeks, and months between any two dates. Perfect for project planning and milestone tracking." />
         <meta name="keywords" content="date calculator, days between dates, week counter, time between dates, project schedule tool" />
-        <link rel="canonical" href="https://bestifycalculator.com/date" />
+        <link rel="canonical" href="https://bestifycalculator.com/date-calculator" />
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">

@@ -10,7 +10,8 @@ import {
   Coins, 
   HandCoins,
   History,
-  TrendingUp
+  TrendingUp,
+  Zap
 } from 'lucide-react';
 
 export interface CalculatorInfo {
@@ -29,7 +30,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Calculate your exact age in years, months, and days.',
     icon: User,
     category: 'Health',
-    path: '/age'
+    path: '/age-calculator'
   },
   {
     id: 'bmi',
@@ -37,7 +38,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Check your Body Mass Index and health category.',
     icon: Weight,
     category: 'Health',
-    path: '/bmi'
+    path: '/bmi-calculator'
   },
   {
     id: 'salary',
@@ -45,7 +46,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Convert hourly wage to annual salary and vice-versa.',
     icon: Banknote,
     category: 'Finance',
-    path: '/salary'
+    path: '/salary-calculator'
   },
   {
     id: 'calories',
@@ -53,7 +54,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Estimate daily calorie needs based on activity.',
     icon: Flame,
     category: 'Health',
-    path: '/calories'
+    path: '/calories-calculator'
   },
   {
     id: 'fat',
@@ -61,7 +62,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Estimate body fat percentage using measurements.',
     icon: TrendingUp,
     category: 'Health',
-    path: '/fat'
+    path: '/body-fat-calculator'
   },
   {
     id: 'date-calc',
@@ -69,7 +70,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Count days between dates or add/subtract time.',
     icon: Calendar,
     category: 'General',
-    path: '/date'
+    path: '/date-calculator'
   },
   {
     id: 'unit-converter',
@@ -77,7 +78,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Convert length, mass, volume, and more.',
     icon: Ruler,
     category: 'Unit',
-    path: '/units'
+    path: '/unit-converter-calculator'
   },
   {
     id: 'financial',
@@ -85,7 +86,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Calculate monthly payments and total interest.',
     icon: HandCoins,
     category: 'Finance',
-    path: '/loan'
+    path: '/loan-calculator'
   },
   {
     id: 'mortgage',
@@ -93,7 +94,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Plan your home purchase with detailed payments.',
     icon: Calculator,
     category: 'Finance',
-    path: '/mortgage'
+    path: '/mortgage-calculator'
   },
   {
     id: 'tip',
@@ -101,7 +102,7 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Quickly calculate tips and split bills.',
     icon: History,
     category: 'General',
-    path: '/tip'
+    path: '/tip-calculator'
   },
   {
     id: 'currency',
@@ -109,6 +110,22 @@ export const CALCULATORS: CalculatorInfo[] = [
     description: 'Real-time exchange rates for global currencies.',
     icon: Coins,
     category: 'Finance',
-    path: '/currency'
+    path: '/currency-converter-calculator'
+  },
+  {
+    id: 'watts-to-volts',
+    name: 'Watts to Volts',
+    description: 'Convert Watts to Volts for DC and AC circuits.',
+    icon: Zap,
+    category: 'Unit',
+    path: '/watts-to-volts-calculator'
+  },
+  {
+    id: 'volts-to-watts',
+    name: 'Volts to Watts',
+    description: 'Convert Volts to Watts for DC and AC circuits.',
+    icon: Zap,
+    category: 'Unit',
+    path: '/volts-to-watts-calculator'
   }
 ];

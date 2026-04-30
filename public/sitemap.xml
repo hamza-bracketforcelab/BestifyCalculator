@@ -6,57 +6,62 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/bmi</loc>
+    <loc>https://bestifycalculator.com/bmi-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/age</loc>
+    <loc>https://bestifycalculator.com/age-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/salary</loc>
+    <loc>https://bestifycalculator.com/salary-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/units</loc>
+    <loc>https://bestifycalculator.com/unit-converter-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/currency</loc>
+    <loc>https://bestifycalculator.com/currency-converter-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/loan</loc>
+    <loc>https://bestifycalculator.com/loan-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/mortgage</loc>
+    <loc>https://bestifycalculator.com/mortgage-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/calories</loc>
+    <loc>https://bestifycalculator.com/calories-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/fat</loc>
+    <loc>https://bestifycalculator.com/body-fat-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/date</loc>
+    <loc>https://bestifycalculator.com/date-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bestifycalculator.com/tip</loc>
+    <loc>https://bestifycalculator.com/tip-calculator</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bestifycalculator.com/watts-to-volts-calculator</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>

@@ -35,7 +35,7 @@ export default function TipCalculator() {
         <title>Tip Calculator | Bill Splitter & Tip Tool | BestifyCalculator</title>
         <meta name="description" content="Quickly calculate tips and split bills with friends. Perfect for restaurants, cafes, and group outings. Simple and fast tip calculator." />
         <meta name="keywords" content="tip calculator, bill splitter, restaurant tip, gratuity calculator, split bill tool" />
-        <link rel="canonical" href="https://bestifycalculator.com/tip" />
+        <link rel="canonical" href="https://bestifycalculator.com/tip-calculator" />
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">

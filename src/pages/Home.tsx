@@ -4,11 +4,13 @@ import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { CALCULATORS } from '@/src/constants/calculators';
 import CalculatorCard from '@/src/components/CalculatorCard';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [inputValue, setInputValue] = React.useState('0');
   const [convType, setConvType] = React.useState<'CM' | 'KM' | 'C' | 'KG'>('CM');
+  const { t } = useTranslation();
 
   const getResult = () => {
     const val = parseFloat(inputValue) || 0;
@@ -33,8 +35,8 @@ export default function Home() {
     <div className="space-y-12">
       <Helmet>
         <title>Bestify Calculator | BMI, Loan, Currency & Health Tools (AD-FREE)</title>
-        <meta name="description" content="Bestify Calculator offers 15+ free, professional tools: BMI Calculator, Loan Calculator, Real-time Currency Converter, Salary Calculator, and more. Precise results, mobile-friendly design, and full SEO ranking for your calculations." />
-        <meta name="keywords" content="BMI calculator, loan calculator, currency converter, body fat calculator, calories calculator, age calculator, salary calculator, date calculator, mortgage calculator, unit converter, bestify calculator, tip calculator" />
+        <meta name="description" content="Bestify Calculator offers 15+ free, professional tools: BMI Calculator, Loan Calculator, Volts to Watts, Watts to Volts, Real-time Currency Converter, and more. Precise results, mobile-friendly design, and full SEO ranking." />
+        <meta name="keywords" content="BMI calculator, loan calculator, currency converter, volts to watts, watts to volts, body fat calculator, calories calculator, age calculator, salary calculator, date calculator, mortgage calculator, unit converter, bestify calculator, tip calculator" />
         <link rel="canonical" href="https://bestifycalculator.com/" />
         
         {/* JSON-LD Structured Data for SEO */}
@@ -67,8 +69,8 @@ export default function Home() {
             transition={{ duration: 0.3 }}
             className="text-5xl md:text-8xl font-black tracking-tighter text-brand-primary leading-[0.9] font-display mb-8"
           >
-            CALCULATE <br />
-            <span className="text-brand-accent bg-clip-text text-transparent bg-gradient-to-r from-brand-accent to-indigo-500">PRECISION.</span>
+            {t('CALCULATE')} <br />
+            <span className="text-brand-accent bg-clip-text text-transparent bg-gradient-to-r from-brand-accent to-indigo-500">{t('PRECISION.')}</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -76,8 +78,7 @@ export default function Home() {
             transition={{ delay: 0.1, duration: 0.3 }}
             className="text-lg md:text-xl text-brand-text-soft max-w-2xl mx-auto leading-relaxed font-medium mb-12"
           >
-            Access a suite of professional instruments for health, finance, and engineering. 
-            All your vital data in one place.
+            {t('hero_description')}
           </motion.p>
         </motion.div>
 
@@ -93,7 +94,7 @@ export default function Home() {
           </div>
           <input
             type="text"
-            placeholder="Search 15+ professional tools..."
+            placeholder={t('Search 15+ professional tools...')}
             className="block w-full pl-16 pr-6 py-6 glass bg-brand-card/40 rounded-[32px] focus:ring-4 focus:ring-brand-accent/10 focus:border-brand-accent transition-all duration-500 outline-none text-brand-primary text-xl font-bold placeholder:text-brand-text-soft/50 shadow-brand-accent/5"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -113,7 +114,7 @@ export default function Home() {
             aria-label="Scroll to Instruments"
           >
             <span className="text-[10px] font-black text-brand-text-soft uppercase tracking-[0.25em] group-hover:text-brand-accent transition-colors">
-              Explore Tools
+              {t('Explore Tools')}
             </span>
             <motion.div
               animate={{ 
@@ -157,11 +158,11 @@ export default function Home() {
       <section id="instruments-section" className="relative z-10 pt-12">
         <div className="flex items-end justify-between mb-12 px-2">
           <div className="space-y-1">
-            <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">The Instruments</h2>
+            <h2 className="text-3xl font-black text-brand-primary font-display uppercase tracking-tight">{t('The Instruments')}</h2>
             <div className="w-12 h-1.5 bg-brand-accent rounded-full" />
           </div>
           <div className="text-[10px] font-black text-brand-text-soft uppercase tracking-[0.25em] bg-brand-card/50 backdrop-blur-md px-4 py-2 rounded-full border border-brand-border">
-            {filteredCalculators.length} ACTIVE TOOLS
+            {filteredCalculators.length} {t('ACTIVE TOOLS')}
           </div>
         </div>
 
@@ -186,7 +187,7 @@ export default function Home() {
         <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-4xl font-black text-brand-primary font-display leading-[1.1]">UNIT CONVERTER & <br /><span className="text-brand-accent">RAPID</span> CONVERSION</h2>
+              <h2 className="text-4xl font-black text-brand-primary font-display leading-[1.1]">{t('Unit Converter').toUpperCase()} & <br /><span className="text-brand-accent">{t('RAPID')}</span> CONVERSION</h2>
               <p className="text-brand-text-soft font-medium leading-relaxed max-w-sm">
                 Our unit conversion engine handles complex datasets including KM, KG, Celsius, and more. High precision ranking tools for daily tasks.
               </p>
@@ -222,7 +223,7 @@ export default function Home() {
               </span>
             </div>
             <h3 className="text-2xl font-black mb-2 text-brand-primary font-display uppercase">
-              {convType === 'C' ? 'THERMAL' : convType === 'KM' ? 'DISTANCE' : convType === 'KG' ? 'MASS' : 'LENGTH'} RELATIVITY
+              {convType === 'C' ? t('THERMAL') : convType === 'KM' ? t('DISTANCE') : convType === 'KG' ? t('MASS') : t('LENGTH')} RELATIVITY
             </h3>
             <p className="text-brand-text-soft text-sm font-medium mb-8">Enter value to synchronize units instantly</p>
             <div className="w-full space-y-6">
@@ -260,12 +261,12 @@ export default function Home() {
             {CALCULATORS.map(calc => (
               <div key={`seo-${calc.id}`} className="space-y-3 group">
                 <h3 className="text-xl font-black font-display text-brand-primary group-hover:text-brand-accent transition-colors">
-                  {calc.name.toUpperCase()} TOOL
+                  {t(calc.name).toUpperCase()} TOOL
                 </h3>
                 <p className="text-sm text-brand-text-soft leading-relaxed">
-                  <span className="font-bold text-brand-primary uppercase">{calc.name}</span>: {calc.description} 
-                  Bestify provides the most accurate {calc.name.toLowerCase()} available online. Whether you are analyzing {calc.category.toLowerCase()} data 
-                  or seeking instant results, our {calc.name.toLowerCase()} is optimized for precision and mobile responsiveness. 
+                  <span className="font-bold text-brand-primary uppercase">{t(calc.name)}</span>: {t(`${calc.name}_desc`)} 
+                  Bestify provides the most accurate {t(calc.name).toLowerCase()} available online. Whether you are analyzing {t(calc.category).toLowerCase()} data 
+                  or seeking instant results, our {t(calc.name).toLowerCase()} is optimized for precision and mobile responsiveness. 
                   Ranked highly for efficiency, this tool is part of our professional-grade suite.
                 </p>
                 <div className="w-8 h-1 bg-brand-accent/30 group-hover:w-full transition-all duration-300" />

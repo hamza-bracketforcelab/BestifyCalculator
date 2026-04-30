@@ -53,7 +53,7 @@ export default function AgeCalculator() {
         <title>Age Calculator | Exact Age in Years, Months, Days | BestifyCalculator</title>
         <meta name="description" content="Calculate your exact age, next birthday, and life milestones. Simple, accurate age calculator for birth dates and specific time intervals." />
         <meta name="keywords" content="age calculator, birth date calculator, how old am i, chronological age, next birthday" />
-        <link rel="canonical" href="https://bestifycalculator.com/age" />
+        <link rel="canonical" href="https://bestifycalculator.com/age-calculator" />
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">

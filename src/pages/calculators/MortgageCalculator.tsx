@@ -51,7 +51,7 @@ export default function MortgageCalculator() {
       <Helmet>
         <title>Mortgage Calculator | Monthly Payments & PITI | BestifyCalculator</title>
         <meta name="description" content="Calculate your mortgage payments including property tax and insurance. Plan your home purchase with our accurate PITI breakdown." />
-        <link rel="canonical" href="https://bestifycalculator.com/mortgage" />
+        <link rel="canonical" href="https://bestifycalculator.com/mortgage-calculator" />
       </Helmet>
 
       <div className="text-center space-y-4">

@@ -69,6 +69,7 @@ export default function BodyFatCalculator() {
       <Helmet>
         <title>Body Fat Percentage Calculator | U.S. Navy Method | BestifyCalculator</title>
         <meta name="description" content="Estimate your body fat percentage using the U.S. Navy Method. Enter your measurements for an accurate body composition breakdown." />
+        <link rel="canonical" href="https://bestifycalculator.com/body-fat-calculator" />
       </Helmet>
 
       <div className="text-center space-y-4">

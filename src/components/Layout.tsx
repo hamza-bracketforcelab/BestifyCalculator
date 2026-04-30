@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Calculator, LayoutGrid, Search, Menu, X, ChevronDown, Moon, Sun } from 'lucide-react';
+import { Calculator, LayoutGrid, Search, Menu, X, ChevronDown, Moon, Sun, Languages } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { CALCULATORS } from '@/src/constants/calculators';
 import QuickSwitcher from '@/src/components/QuickSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSwitcherOpen, setIsSwitcherOpen] = React.useState(false);
+  const [isLangOpen, setIsLangOpen] = React.useState(false);
+  const { t, i18n } = useTranslation();
+  
   const [isDarkMode, setIsDarkMode] = React.useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') === 'dark' || 
@@ -92,7 +96,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 onClick={() => setIsSwitcherOpen(!isSwitcherOpen)}
                 className="flex items-center gap-2 px-5 py-2.5 bg-brand-bg/50 backdrop-blur-sm border border-brand-border rounded-2xl text-sm font-bold hover:border-brand-accent transition-all text-brand-primary"
               >
-                {currentCalc ? currentCalc.name : 'Select Calculator'}
+                {currentCalc ? currentCalc.name : t('Select Calculator')}
                 <ChevronDown size={14} className={cn("transition-transform duration-200", isSwitcherOpen && "rotate-180")} />
               </button>
 
@@ -145,9 +149,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-6">
             {[
-              { label: 'All Tools', path: '/' },
-              { label: 'Units', path: '/units' },
-              { label: 'Currency', path: '/currency' }
+              { label: t('All Tools'), path: '/' },
+              { label: t('Units'), path: '/unit-converter-calculator' },
+              { label: t('Currency'), path: '/currency-converter-calculator' }
             ].map(link => (
               <Link 
                 key={link.path}
@@ -167,6 +171,58 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
             
+            {/* Language Switcher */}
+            <div className="relative">
+              <button 
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="p-2.5 rounded-2xl bg-brand-bg/50 backdrop-blur-sm border border-brand-border text-brand-text-soft hover:text-brand-accent hover:border-brand-accent transition-all flex items-center gap-1"
+              >
+                <Languages size={20} />
+                <span className="text-[10px] font-black uppercase tracking-tighter">{i18n.language}</span>
+              </button>
+              
+              <AnimatePresence>
+                {isLangOpen && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setIsLangOpen(false)} />
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute top-full right-0 mt-3 w-40 bg-brand-card/90 backdrop-blur-2xl rounded-2xl shadow-2xl border border-brand-border overflow-hidden z-20"
+                    >
+                      <div className="p-2 grid gap-1">
+                        {[
+                          { code: 'en', name: 'English' },
+                          { code: 'es', name: 'Español' },
+                          { code: 'hi', name: 'हिंदी' },
+                          { code: 'ur', name: 'اردو' },
+                          { code: 'ar', name: 'العربية' },
+                          { code: 'fr', name: 'Français' },
+                          { code: 'zh', name: '中文' }
+                        ].map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              i18n.changeLanguage(lang.code);
+                              setIsLangOpen(false);
+                            }}
+                            className={cn(
+                              "flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all",
+                              i18n.language === lang.code ? "bg-brand-accent text-white" : "text-brand-primary hover:bg-brand-accent/10"
+                            )}
+                          >
+                            {lang.name}
+                            {i18n.language === lang.code && <div className="w-1 h-1 rounded-full bg-white animate-pulse" />}
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Theme Toggle */}
             <motion.button 
               whileTap={{ scale: 0.9 }}
@@ -210,27 +266,51 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="block text-lg font-medium text-brand-primary" 
                 onClick={() => setIsMenuOpen(false)}
               >
-                All Calculators
+                {t('All Tools')}
               </Link>
               <Link 
-                to="/units" 
+                to="/unit-converter-calculator" 
                 className="block text-lg font-medium text-brand-primary" 
                 onClick={() => setIsMenuOpen(false)}
               >
-                Unit Converter
+                {t('Units')}
               </Link>
               <Link 
-                to="/currency" 
+                to="/currency-converter-calculator" 
                 className="block text-lg font-medium text-brand-primary" 
                 onClick={() => setIsMenuOpen(false)}
               >
-                Currency Converter
+                {t('Currency')}
               </Link>
+              <div className="border-t border-brand-border pt-4 space-y-4">
+                 <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-brand-text-soft uppercase tracking-widest">Language</span>
+                 </div>
+                 <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { code: 'en', name: 'English' },
+                      { code: 'es', name: 'Español' },
+                      { code: 'hi', name: 'हिंदी' },
+                      { code: 'ur', name: 'اردو' }
+                    ].map(lang => (
+                      <button 
+                        key={lang.code}
+                        onClick={() => {
+                          i18n.changeLanguage(lang.code);
+                          setIsMenuOpen(false);
+                        }}
+                        className={cn("px-3 py-2 rounded-lg text-xs font-bold border", i18n.language === lang.code ? "bg-brand-accent text-white border-brand-accent" : "bg-brand-bg text-brand-primary border-brand-border")}
+                      >
+                        {lang.name}
+                      </button>
+                    ))}
+                 </div>
+              </div>
               <button 
                 onClick={toggleDarkMode}
                 className="w-full flex items-center justify-between text-lg font-medium text-brand-primary border-t border-brand-border pt-4"
               >
-                <span>Theme</span>
+                <span>{t('Theme')}</span>
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
             </div>
@@ -263,18 +343,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Top Instruments</h4>
               <ul className="mt-4 space-y-2">
-                <li><Link to="/bmi" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">BMI Calculator</Link></li>
-                <li><Link to="/loan" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Loan Calculator</Link></li>
-                <li><Link to="/currency" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Currency Converter</Link></li>
-                <li><Link to="/salary" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Salary Calculator</Link></li>
+                <li><Link to="/bmi-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">BMI Calculator</Link></li>
+                <li><Link to="/loan-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Loan Calculator</Link></li>
+                <li><Link to="/currency-converter-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Currency Converter</Link></li>
+                <li><Link to="/salary-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Salary Calculator</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Engineering Tools</h4>
+              <ul className="mt-4 space-y-2">
+                <li><Link to="/watts-to-volts-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Watts to Volts</Link></li>
+                <li><Link to="/volts-to-watts-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Volts to Watts</Link></li>
+                <li><Link to="/unit-converter-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Unit Converter</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-sm font-semibold text-brand-primary uppercase tracking-wider">Health Indices</h4>
               <ul className="mt-4 space-y-2">
-                <li><Link to="/age" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Age Calculator Tool</Link></li>
-                <li><Link to="/calories" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Calories Estimator</Link></li>
-                <li><Link to="/fat" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Body Fat Index</Link></li>
+                <li><Link to="/age-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Age Calculator Tool</Link></li>
+                <li><Link to="/calories-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Calories Estimator</Link></li>
+                <li><Link to="/body-fat-calculator" className="text-sm text-brand-text-soft hover:text-brand-accent transition-colors">Body Fat Index</Link></li>
               </ul>
             </div>
           </div>

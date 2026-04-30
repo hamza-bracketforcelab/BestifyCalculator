@@ -50,7 +50,7 @@ export default function SalaryCalculator() {
         <title>Salary Calculator | Hourly to Annual Rate Converter | BestifyCalculator</title>
         <meta name="description" content="Convert your hourly wage to daily, weekly, monthly, and annual salary. Accurate results with customizable work hours and vacation weeks." />
         <meta name="keywords" content="salary calculator, hourly to annual, wage converter, budget planning, income calculator" />
-        <link rel="canonical" href="https://bestifycalculator.com/salary" />
+        <link rel="canonical" href="https://bestifycalculator.com/salary-calculator" />
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">

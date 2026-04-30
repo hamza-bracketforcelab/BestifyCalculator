@@ -4,33 +4,50 @@ import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '@/src/lib/utils';
 import RelatedCalculators from '@/src/components/RelatedCalculators';
+import { useTranslation } from 'react-i18next';
 
 export default function BMICalculator() {
   const [weight, setWeight] = React.useState('70');
   const [height, setHeight] = React.useState('175');
+  const [feet, setFeet] = React.useState('5');
+  const [inches, setInches] = React.useState('9');
   const [unit, setUnit] = React.useState<'metric' | 'imperial'>('metric');
+  const { t } = useTranslation();
   
   const calculateBMI = () => {
     const w = parseFloat(weight);
-    const h = parseFloat(height);
-    if (!w || !h) return 0;
+    if (!w) return 0;
     
     let bmiValue = 0;
     if (unit === 'metric') {
+      const h = parseFloat(height);
+      if (!h) return 0;
       bmiValue = w / ((h / 100) * (h / 100));
     } else {
-      bmiValue = (w / (h * h)) * 703;
+      const f = parseFloat(feet) || 0;
+      const i = parseFloat(inches) || 0;
+      const totalInches = (f * 12) + i;
+      if (!totalInches) return 0;
+      bmiValue = (w / (totalInches * totalInches)) * 703;
     }
     return Math.round(bmiValue * 10) / 10;
+  };
+
+  const syncToCm = () => {
+    const f = parseFloat(feet) || 0;
+    const i = parseFloat(inches) || 0;
+    const cm = (f * 30.48) + (i * 2.54);
+    setHeight(Math.round(cm).toString());
+    setUnit('metric');
   };
 
   const bmi = calculateBMI();
 
   const getBMICategory = (val: number) => {
-    if (val < 18.5) return { label: 'Underweight', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' };
-    if (val < 25) return { label: 'Normal weight', color: 'text-green-500', bg: 'bg-green-50 dark:bg-green-900/20' };
-    if (val < 30) return { label: 'Overweight', color: 'text-orange-500', bg: 'bg-orange-50 dark:bg-orange-900/20' };
-    return { label: 'Obese', color: 'text-red-500', bg: 'bg-red-50 dark:bg-red-900/20' };
+    if (val < 18.5) return { label: t('Underweight'), color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' };
+    if (val < 25) return { label: t('Normal weight'), color: 'text-green-500', bg: 'bg-green-50 dark:bg-green-900/20' };
+    if (val < 30) return { label: t('Overweight'), color: 'text-orange-500', bg: 'bg-orange-50 dark:bg-orange-900/20' };
+    return { label: t('Obese'), color: 'text-red-500', bg: 'bg-red-50 dark:bg-red-900/20' };
   };
 
   const category = getBMICategory(bmi);
@@ -41,7 +58,7 @@ export default function BMICalculator() {
         <title>BMI Calculator | Healthy Weight Tool | BestifyCalculator</title>
         <meta name="description" content="Check your Body Mass Index (BMI) instantly. Find your ideal weight range and health category with our accurate BMI tool for adults." />
         <meta name="keywords" content="bmi calculator, body mass index, healthy weight, weight category, fitness tool" />
-        <link rel="canonical" href="https://bestifycalculator.com/bmi" />
+        <link rel="canonical" href="https://bestifycalculator.com/bmi-calculator" />
         
         {/* FAQ Structured Data for Google Ranking */}
         <script type="application/ld+json">
@@ -98,7 +115,7 @@ export default function BMICalculator() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-brand-primary">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
+              <label className="text-sm font-semibold text-brand-primary">{t('Weight')} ({unit === 'metric' ? 'kg' : 'lbs'})</label>
               <input 
                 type="number" 
                 className="w-full px-4 py-3 bg-brand-bg border border-brand-border text-brand-primary rounded-xl focus:ring-2 focus:ring-brand-accent outline-none font-bold transition-all"
@@ -107,27 +124,88 @@ export default function BMICalculator() {
               />
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-brand-primary">Height ({unit === 'metric' ? 'cm' : 'inches'})</label>
-              <input 
-                type="number" 
-                className="w-full px-4 py-3 bg-brand-bg border border-brand-border text-brand-primary rounded-xl focus:ring-2 focus:ring-brand-accent outline-none font-bold transition-all"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-              />
+            <div className="space-y-4">
+              <label className="text-sm font-semibold text-brand-primary">{t('Height')} ({unit === 'metric' ? 'cm' : 'ft / in'})</label>
+              {unit === 'metric' ? (
+                <div className="space-y-4">
+                  <input 
+                    type="number" 
+                    className="w-full px-4 py-3 bg-brand-bg border border-brand-border text-brand-primary rounded-xl focus:ring-2 focus:ring-brand-accent outline-none font-bold transition-all"
+                    value={height}
+                    onChange={(e) => setHeight(e.target.value)}
+                  />
+                  
+                  {/* Feet & Inch to CM Helper - Requested by user */}
+                  <div className="p-4 bg-brand-bg/50 rounded-2xl border border-brand-border border-dashed space-y-3">
+                    <div className="flex items-center justify-between">
+                       <p className="text-[10px] font-black text-brand-text-soft uppercase tracking-widest">Feet & Inches to CM</p>
+                       <Info size={12} className="text-brand-text-soft" />
+                    </div>
+                    <div className="space-y-3">
+                       <div className="relative">
+                         <input 
+                           type="number" 
+                           placeholder="Ft"
+                           value={feet} 
+                           onChange={(e) => setFeet(e.target.value)} 
+                           className="w-full pl-3 pr-8 py-2 bg-brand-card border border-brand-border rounded-lg text-sm font-bold text-brand-primary outline-none focus:border-brand-accent transition-all" 
+                         />
+                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-brand-text-soft font-black">FT</span>
+                       </div>
+                       <div className="relative">
+                         <input 
+                           type="number" 
+                           placeholder="In"
+                           value={inches} 
+                           onChange={(e) => setInches(e.target.value)} 
+                           className="w-full pl-3 pr-8 py-2 bg-brand-card border border-brand-border rounded-lg text-sm font-bold text-brand-primary outline-none focus:border-brand-accent transition-all" 
+                         />
+                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-brand-text-soft font-black">IN</span>
+                       </div>
+                    </div>
+                    <button 
+                      onClick={syncToCm}
+                      className="w-full py-2 bg-brand-accent text-white hover:bg-brand-accent/90 text-[10px] font-black uppercase rounded-lg transition-all shadow-sm"
+                    >
+                      {t('Convert to CM')}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="relative">
+                    <input 
+                      type="number" 
+                      value={feet} 
+                      onChange={(e) => setFeet(e.target.value)} 
+                      className="w-full px-4 py-3 bg-brand-bg border border-brand-border text-brand-primary rounded-xl outline-none focus:ring-2 focus:ring-brand-accent font-bold transition-all" 
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] text-brand-text-soft font-black">FT</span>
+                  </div>
+                  <div className="relative">
+                    <input 
+                      type="number" 
+                      value={inches} 
+                      onChange={(e) => setInches(e.target.value)} 
+                      className="w-full px-4 py-3 bg-brand-bg border border-brand-border text-brand-primary rounded-xl outline-none focus:ring-2 focus:ring-brand-accent font-bold transition-all" 
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] text-brand-text-soft font-black">IN</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-3xl border border-blue-100 dark:border-blue-900/30 space-y-4">
              <div className="flex items-center gap-2 text-blue-700 dark:text-blue-400">
                <Info size={18} />
-               <span className="font-bold text-sm">BMI Categories</span>
+               <span className="font-bold text-sm">{t('BMI Categories')}</span>
              </div>
              <div className="space-y-2 text-xs text-blue-800 dark:text-blue-300">
-                <div className="flex justify-between"><span>Underweight:</span> <span className="font-bold">&lt; 18.5</span></div>
-                <div className="flex justify-between"><span>Normal:</span> <span className="font-bold">18.5 – 24.9</span></div>
-                <div className="flex justify-between"><span>Overweight:</span> <span className="font-bold">25 – 29.9</span></div>
-                <div className="flex justify-between"><span>Obese:</span> <span className="font-bold">30+</span></div>
+                <div className="flex justify-between"><span>{t('Underweight')}:</span> <span className="font-bold">&lt; 18.5</span></div>
+                <div className="flex justify-between"><span>{t('Normal weight')}:</span> <span className="font-bold">18.5 – 24.9</span></div>
+                <div className="flex justify-between"><span>{t('Overweight')}:</span> <span className="font-bold">25 – 29.9</span></div>
+                <div className="flex justify-between"><span>{t('Obese')}:</span> <span className="font-bold">30+</span></div>
              </div>
           </div>
         </div>
@@ -152,7 +230,7 @@ export default function BMICalculator() {
              </div>
 
              <div className="mt-8 pt-8 border-t border-brand-border flex flex-col items-center">
-                <h3 className="text-sm font-bold text-brand-text-soft uppercase tracking-widest mb-8">Health Speed Meter</h3>
+                <h3 className="text-sm font-bold text-brand-text-soft uppercase tracking-widest mb-8">{t('Health Speed Meter')}</h3>
                 
                 <div className="relative w-full max-w-[300px] aspect-[2/1] overflow-hidden">
                   {/* Gauge SVG */}

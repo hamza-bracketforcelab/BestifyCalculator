@@ -48,6 +48,7 @@ export default function CaloriesCalculator() {
       <Helmet>
         <title>Daily Calorie Calculator | TDEE & BMR | BestifyCalculator</title>
         <meta name="description" content="Calculate your daily calorie needs for weight loss, maintenance, or muscle gain using the Mifflin-St Jeor formula." />
+        <link rel="canonical" href="https://bestifycalculator.com/calories-calculator" />
       </Helmet>
 
       <div className="text-center space-y-4">

@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 import { motion } from 'motion/react';
 import { CalculatorInfo } from '@/src/constants/calculators';
+import { useTranslation } from 'react-i18next';
 
 export default function CalculatorCard({ calc, index }: { calc: CalculatorInfo; index: number; key?: string }) {
   const Icon = calc.icon;
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -36,17 +38,17 @@ export default function CalculatorCard({ calc, index }: { calc: CalculatorInfo; 
               calc.category === 'General' && "bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20",
               calc.category === 'Other' && "bg-brand-bg/50 text-brand-text-soft ring-1 ring-brand-border",
             )}>
-              {calc.category}
+              {t(calc.category)}
             </span>
           </div>
           <h3 className="text-xl font-bold text-brand-primary group-hover:text-brand-accent transition-colors font-display">
-            {calc.name}
+            {t(calc.name)}
           </h3>
           <p className="mt-3 text-sm text-brand-text-soft leading-relaxed flex-grow opacity-80 group-hover:opacity-100 transition-opacity">
-            {calc.description}
+            {t(`${calc.name}_desc`)}
           </p>
           <div className="mt-6 flex items-center gap-2 text-xs font-bold text-brand-accent transform translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all">
-            <span>START CALCULATION</span>
+            <span>{t('Calculate').toUpperCase()}</span>
             <motion.div
               animate={{ x: [0, 4, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}

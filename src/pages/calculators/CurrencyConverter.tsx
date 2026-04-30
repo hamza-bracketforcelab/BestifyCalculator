@@ -83,7 +83,7 @@ export default function CurrencyConverter() {
       <Helmet>
         <title>Real-Time Currency Converter | BestifyCalculator</title>
         <meta name="description" content="Convert global currencies with real-time exchange rates. Accurately transform USD, EUR, GBP, and more instantly." />
-        <link rel="canonical" href="https://bestifycalculator.com/currency" />
+        <link rel="canonical" href="https://bestifycalculator.com/currency-converter-calculator" />
       </Helmet>
 
       <div className="text-center space-y-4">

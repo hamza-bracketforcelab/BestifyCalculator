@@ -91,7 +91,7 @@ export default function UnitConverter() {
         <title>Unit Converter | Length, Weight, Volume Converter | BestifyCalculator</title>
         <meta name="description" content="Convert between metric and imperial units instantly. Fast conversion for length (cm to inch, km to mile), weight (kg to lbs), and volume." />
         <meta name="keywords" content="unit converter, cm to inch, kg to lbs, miles to km, metric converter, measurement converter" />
-        <link rel="canonical" href="https://bestifycalculator.com/units" />
+        <link rel="canonical" href="https://bestifycalculator.com/unit-converter-calculator" />
       </Helmet>
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-brand-primary flex items-center justify-center gap-3">

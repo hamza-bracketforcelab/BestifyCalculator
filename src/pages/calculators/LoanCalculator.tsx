@@ -43,7 +43,7 @@ export default function LoanCalculator() {
         <title>Loan Calculator | Monthly Payment & Interest Tool | BestifyCalculator</title>
         <meta name="description" content="Calculate your monthly loan payments, total interest, and principal breakdown. Perfect for personal loans, auto loans, and general financing." />
         <meta name="keywords" content="loan calculator, monthly payment, interest calculator, loan payoff, personal loan calc" />
-        <link rel="canonical" href="https://bestifycalculator.com/loan" />
+        <link rel="canonical" href="https://bestifycalculator.com/loan-calculator" />
 
         {/* FAQ Structured Data for SEO */}
         <script type="application/ld+json">
